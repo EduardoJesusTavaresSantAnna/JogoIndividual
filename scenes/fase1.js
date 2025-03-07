@@ -68,12 +68,12 @@ export default class fase1 extends Phaser.Scene {
         this.add.image(1278 / 2, 551 / 2, "bgFase1");
 
         // Adicionar o jogador
-        this.player = this.physics.add.sprite(40, 50, 'player').setScale(0.5);
+        this.player = this.physics.add.sprite(20, 490, 'player').setScale(0.5);
         this.player.body.setSize(40, 65);
         this.player.setCollideWorldBounds(true); // Faz o jogador colidir com os limites da cena
 
         // Adicionar a bola e definir colisão com os limites do mundo
-        this.bola = this.physics.add.sprite(20, 20, 'bola').setScale(0.1);
+        this.bola = this.physics.add.sprite(40, 490, 'bola').setScale(0.1);
         this.bola.body.setSize(100, 100);
         this.bola.body.setCollideWorldBounds(true); // Adicionar colisão com os limites do mundo
 
@@ -148,7 +148,7 @@ export default class fase1 extends Phaser.Scene {
         
         // adicionar oponentes na lista e posicioná-los sobre as plataformas
         let plataformaIndex = 3; // Índice da plataforma atual para posicionar o oponente
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 5; i++) {
             // Posicionar oponente na coordenada X da plataforma
             let plataforma = this.plataformas.getChildren()[plataformaIndex];
             let oponente = new Oponente(this, plataforma.x, plataforma.y - 50, 'oponente', 0.5, 40, 65); // Definir escala e hitbox do oponente aqui
@@ -167,9 +167,10 @@ export default class fase1 extends Phaser.Scene {
         this.physics.add.collider(this.bola, this.oponentes.map(op => op.sprite), this.gameOver, null, this);
         // Adicionar evento de colisão entre a bola e a trave
         this.physics.add.collider(this.bola, this.trave, this.gameVitoria, null, this);
-
+        
+        // Adicionar a câmera
         this.cameras.main.startFollow(this.player, true);
-
+        // Ajustar o zoom da câmera
         this.cameras.main.setZoom(2.5);
         
     }

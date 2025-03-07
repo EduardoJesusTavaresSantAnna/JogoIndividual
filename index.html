@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FutLock</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    <style> body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; } </style>
+</head>
+<body>
+    <script type ='module'>
+        
+        //Importa as cenas do jogo
+        import menu from "./scenes/menu.js";
+        import fase1 from "./scenes/fase1.js";
+        import fimJogo from "./scenes/fimJogo.js";
+        import vitoria from "./scenes/vitoria.js";
+        import tutorial from "./scenes/tutorial.js" 
+
+        const larguraJogo = 1400;//Define a largura do jogo
+        const alturaJogo = 551; //Define a altura do jogo
+
+        //Configurações do jogo
+        const config = {
+        type: Phaser.AUTO,
+        width: larguraJogo,
+        height: alturaJogo,
+
+        physics: {
+                default: 'arcade',
+                arcade: {
+                    gravity: {y: 300},
+                    debug: true
+                    
+                }
+            },
+            
+            //Adiciona as cenas ao jogo
+        scene: [menu, fase1, fimJogo, vitoria, tutorial], // Adicione as cenas ao jogo
+        pixelArt: true,
+        scale: {
+            mode: Phaser.Scale.RESIZE,
+            autoCenter: Phaser.Scale.CENTER_BOTH
+        }
+        
+    
+    };
+    
+    const game = new Phaser.Game(config);
+
+    </script>
+</body>
+</html>
